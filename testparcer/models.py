@@ -12,4 +12,5 @@ class Parceline(models.Model):
     urlrequest = models.TextField(blank=True)
     responsecode = models.CharField(max_length=20, blank=True)
     bytesread = models.BigIntegerField(default=0)
-
+    referrer = models.TextField(blank=True)
+    user_agent = models.TextField(blank=True)
