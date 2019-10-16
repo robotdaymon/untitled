@@ -11,6 +11,10 @@ class Parceline(models.Model):
     httpmethod = models.CharField(max_length=8, blank=True)
     urlrequest = models.TextField(blank=True)
     responsecode = models.CharField(max_length=20, blank=True)
-    bytesread = models.BigIntegerField(default=0)
+    bytesread = models.TextField(blank=True)
     referrer = models.TextField(blank=True)
     user_agent = models.TextField(blank=True)
+
+
+class Badstring(models.Model):
+    line = models.TextField(blank=True)
