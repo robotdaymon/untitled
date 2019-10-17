@@ -18,3 +18,4 @@ class Parceline(models.Model):
 
 class Badstring(models.Model):
     line = models.TextField(blank=True)
+    linenumber = models.IntegerField(default=0)
