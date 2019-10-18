@@ -2,7 +2,17 @@ from django.contrib.auth import authenticate
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from django.contrib.auth.forms import AuthenticationForm
+from django.views.generic import ListView
+from django_tables2 import SingleTableView, LazyPaginator
+from .models import Parceline, Person
+from .tables import ParceTable, PersonTable
 
+
+class ParcelineListView(ListView):
+    model = Parceline
+    table_class = ParceTable
+    template_name = 'parcelines.html'
+    paginator_class = LazyPaginator
 
 def index(request):
     return render(request, 'index.html')
@@ -12,20 +22,7 @@ def common_table(request):
     return HttpResponse('<h1>Finally!</h1><h1>Finally!</h1><h1>Finally!</h1><h1>Finally!</h1>')
 
 
-def login(request):
-    if request.method == 'POST':
-        form = AuthenticationForm(data=request.POST)
-        if form.is_valid():
-            return redirect('index/')
-    else:
-        form = AuthenticationForm()
-    return render(request, 'login.html', {'form': form})
-    # if request.method == 'POST':
-    #     username = request.POST['username']
-    #     password = request.POST['password']
-    #     user = authenticate(request, username=username, password=password)
-    # if user is not None:
-    #     login(request, user)
-    # else:
-    #     return render(request, 'index.html')
-
+class PersonListView(SingleTableView):
+    model = Person
+    table_class = PersonTable
+    template_name = 'people.html'
