@@ -8,11 +8,11 @@ from untitled.settings import BASE_DIR
 
 
 class Command(BaseCommand):
-    filename = BASE_DIR + '\\parsed-logs\\'
+    filename = BASE_DIR + '/parsed-logs/'
     print(filename)
     if not os.path.exists(filename):
         os.makedirs(filename)
-    filename += str(datetime.datetime.now().strftime('%d-%B-%Y %H.%M.%S')) + '.log'
+    filename += str(datetime.datetime.now().strftime('%d-%B-%Y_%H.%M.%S')) + '.log'
     print(type(filename))
     print(filename)
     tmpfile = open(str(filename), 'w')

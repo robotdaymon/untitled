@@ -1,10 +1,11 @@
+from django.contrib.auth import authenticate
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from django.contrib.auth.forms import AuthenticationForm
 
 
 def index(request):
-    return render(request, 'base.html')
+    return render(request, 'index.html')
 
 
 def common_table(request):
@@ -18,5 +19,13 @@ def login(request):
             return redirect('index/')
     else:
         form = AuthenticationForm()
-    return render(request, 'login.html' , {'form': form})
+    return render(request, 'login.html', {'form': form})
+    # if request.method == 'POST':
+    #     username = request.POST['username']
+    #     password = request.POST['password']
+    #     user = authenticate(request, username=username, password=password)
+    # if user is not None:
+    #     login(request, user)
+    # else:
+    #     return render(request, 'index.html')
 
