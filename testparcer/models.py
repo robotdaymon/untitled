@@ -19,3 +19,6 @@ class Parceline(models.Model):
 class Badstring(models.Model):
     line = models.TextField(blank=True)
     linenumber = models.IntegerField(default=0)
+
+class Person(models.Model):
+    name = models.CharField(max_length=100, verbose_name="full name")
