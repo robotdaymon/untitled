@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <div class="container mt-5">
+        <div class="row justify-content-md-center mt-5">
+            <main  class="col-12 col-md-9 col-xl-12 py-md-3 pl-md-5 bd-content">
+                <div class="mt-5">
+                     <table class="table table-sm table-hover">
+                      <thead>
+                        <tr>
+                          <th scope="col">ip</th>
+                          <th scope="col">total</th>
+                          <th scope="col">unique Methods</th>
+                          <th scope="col">sum of read bytes</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          {% for stats in stats %}
+                        <tr>
+                          <td><a href="{% url 'stats' ip=stats.ipaddr %}">{{stats.ipaddr}}</a></td>
+                          <td>{{stats.total}}</td>
+                          <td>{{stats.unique_methods}}</td>
+                          <td>{{stats.summ}}</td>
+                        </tr>
+                          {% endfor %}
+                      </tbody>
+                     </table>
+
+                </div>
+            </main>
+        </div>
+      <div class="row justify-content-md-center mt-5">
+                <a class="btn btn-outline-success" href="{% url "aggregated" %}" >Скачать xls</a>
+      </div>
+
+   </div>
+{% endblock content %}

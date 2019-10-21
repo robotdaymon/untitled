@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+   <div class="container ">
+        <div class="row justify-content-md-center ">
+            <main  class="col-12 col-md-9 col-xl-12 py-md-3 pl-md-5 bd-content">
+                <div class="mt-5">
+                     <table class="table table-sm table-hover">
+                      <thead>
+                        <tr>
+                          <th scope="col">ip</th>
+                          <th scope="col">datetime</th>
+                          <th scope="col">bytesread</th>
+                          <th scope="col">Method</th>
+                          <th scope="col">responsecode</th>
+                          <th scope="col">url</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          {% for line in table %}
+                        <tr>
+                          <td><a href="{% url 'stats' ip=line.ipaddr %}">{{line.ipaddr}}</a></td>
+                          <td>{{line.dtimefield}}</td>
+                          <td>{{line.bytesread}}</td>
+                          <td>{{line.httpmethod}}</td>
+                          <td>{{line.responsecode}}</td>
+                          <td>{{line.urlrequest}}</td>
+                        </tr>
+                          {% endfor %}
+                      </tbody>
+                     </table>
+
+                </div>
+            </main>
+        </div>
+
+
+       <div class="row justify-content-md-center mt-5">
+           <nav aria-label="...">
+              <ul class="pagination">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#">First</a></li>
+                <li class="page-item">
+{#                <li class="page-item disabled">#}
+{#                  <a class="page-link" href="{% url ' common_table_p' page=1 %} " tabindex="-1" aria-disabled="true">Previous</a>#}
+{#                </li>#}
+                <li class="page-item active" aria-current="page" >
+                    <a class="page-link" href="{% url 'common_table' %}">1 <span class="sr-only">(current)</span></a></li>
+                <li class="page-item" >
+                  <a class="page-link" href="{% url 'common_table_p' page=2 %}">2</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="{% url 'common_table_p' page=3 %}">3</a></li>
+                <li class="page-item">
+{#                <li class="page-item">#}
+{#                    <a class="page-link" href="#">Next</a></li>#}
+{#                <li class="page-item">#}
+                  <a class="page-link" href="#">END</a>
+                </li>
+              </ul>
+            </nav>
+       </div>
+
+   </div>
+
+
+
+
+{% endblock content %}
